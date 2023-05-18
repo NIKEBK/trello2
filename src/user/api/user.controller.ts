@@ -3,36 +3,20 @@ import { UserRepository } from '../../repository/repositories/user.repository';
 import { User } from 'src/entities/user.entity';
 import { UserService } from '../service/user.service';
 import { AuthGuard } from '@nestjs/passport';
+import { CreateUserDTO } from './user.dto';
 
 @Controller('user')
-@UseGuards(AuthGuard())
 export class UserController {
     @Get()
     public getExample(): string {
         return 'This route is protected and requires authentication.';
     }
-    //export class UserController {
-    // constructor(private readonly userRepository: UserRepository,
-    //     private readonly userService: UserService,) {
-    // }
-    // @Post('create')
-    // async createUser(@Body() body: { userName: string }) {
-    //     return this.userRepository.createUser(body.userName)
-    // }
-    // @Get(':userId')
-    // async showOneUser(@Param('userId') userId: number): Promise<User> {
-    //     return await this.userRepository.findOne({
-    //         where: { id: userId },
-    //         select: ['userName', 'id'],
-    //     });
-    // }
-    // @Delete('delete/:userId')
-    // async deleteUser(@Param('userId') userId: number): Promise<string> {
-    //     await this.userService.deleteUser(userId);
-    //     return `User with id ${userId} was deleted`;
-    // }
-    // @Get()
-    // showAllUsers(): Promise<User[]> {
-    //     return this.userRepository.getAllUsers();
-    // }
+    constructor(private readonly userRepository: UserRepository,
+        private readonly userService: UserService,) {
+    }
+    @Post('create-user')
+    createUsers(@Body() dto: CreateUserDTO) {
+        console.log(dto);
+        return this.userService.createUser(dto)
+    }
 }

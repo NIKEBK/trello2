@@ -15,9 +15,9 @@ export class UserRepository extends Repository<User> {
             userRepository.queryRunner,
         );
     }
-    async createUser(userName: string): Promise<User> {
-        return this.userRepository.save({ userName: userName })
-    }
+    // async createUser(userName: string): Promise<User> {
+    //     return this.userRepository.save({ userName: userName })
+    // }
     async getAllUsers(): Promise<User[]> {
         const users = await this.userRepository.find({
             select: ['userName', 'id'],
