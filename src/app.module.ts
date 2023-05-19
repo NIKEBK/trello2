@@ -9,10 +9,11 @@ import { UserModule } from './user/user.module';
 import { CommentModule } from './comment/comment.module';
 import { CardModule } from './card/card.module';
 import { ColumnModule } from './column/column.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 
 @Module({
-  imports: [TypeOrmModule.forRoot(dataSourceOptions), RepositoryModule, UserModule, CommentModule, CardModule, ColumnModule],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions), RepositoryModule, UserModule, CommentModule, CardModule, ColumnModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })

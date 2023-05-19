@@ -21,8 +21,6 @@ export class UserService {
         return this.userRepository.findOne({ where: { userName: userName } })
     }
     async createUser(dto: CreateUserDTO): Promise<User> {
-        const existUser = this.findUserByUserName(dto.userName)
-        if (existUser) throw new BadRequestException(AppError.USER_EXIST)
         dto.password = await this.hashPassword(dto.password);
         const createdUser = this.userRepository.create(dto);
         await this.userRepository.save(createdUser);
