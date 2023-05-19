@@ -25,5 +25,8 @@ export class UserService {
         const createdUser = this.userRepository.create(dto);
         await this.userRepository.save(createdUser);
         return createdUser;
+        console.log('a');
+
     }
+
 }
