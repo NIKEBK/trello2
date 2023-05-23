@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
 import { CreateUserDTO } from 'src/user/api/user.dto';
 import { Repository } from 'typeorm';
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class UserRepository extends Repository<User> {
@@ -15,6 +16,9 @@ export class UserRepository extends Repository<User> {
             userRepository.manager,
             userRepository.queryRunner,
         );
+    }
+    async findUserByUserName(userName: string) {
+        return this.userRepository.findOne({ where: { userName: userName } })
     }
 }
 

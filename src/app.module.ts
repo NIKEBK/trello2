@@ -8,8 +8,8 @@ import { UserModule } from './user/user.module';
 import { CommentModule } from './comment/comment.module';
 import { CardModule } from './card/card.module';
 import { ColumnModule } from './column/column.module';
-import { AuthModule } from './modules/auth/auth.module';
-import { TokenModule } from './modules/token/token.module';
+import { AuthModule } from './auth/auth.module';
+import { TokenModule } from './token/token.module';
 import { ConfigModule } from '@nestjs/config';
 import configurations from '../src/configurations';
 

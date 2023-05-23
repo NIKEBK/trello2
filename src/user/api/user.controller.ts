@@ -15,8 +15,7 @@ export class UserController {
         private readonly userService: UserService,) {
     }
     @Post('create-user')
-    createUsers(@Body() dto: CreateUserDTO) {
-        console.log(dto);
-        return this.userService.createUser(dto)
+    createUsers(@Body() body: CreateUserDTO) {
+        return this.userService.createUser(body)
     }
 }
