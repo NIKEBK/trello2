@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm"
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, Unique } from "typeorm"
 import { Comment } from "./comment.entity"
 import { ColumnContent } from "./column.entity"
 
@@ -9,6 +9,7 @@ export class User {
     id: number
 
     @Column()
+    @Unique(['userName'])
     userName: string
 
     @Column()

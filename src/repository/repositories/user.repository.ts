@@ -20,6 +20,12 @@ export class UserRepository extends Repository<User> {
     async findUserByUserName(userName: string) {
         return this.userRepository.findOne({ where: { userName: userName } })
     }
+    async publicUser(userName: string) {
+        return this.userRepository.findOne({
+            where: { userName },
+            select: ['userName'],
+        });
+    }
 }
 
 

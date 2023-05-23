@@ -3,7 +3,7 @@ import { UserRepository } from '../../repository/repositories/user.repository';
 import { User } from 'src/entities/user.entity';
 import { InjectModel } from '@nestjs/sequelize';
 import * as bcrypt from 'bcrypt'
-import { CreateUserDTO } from '../api/user.dto';
+import { CreateUserDTO, UpdateUserDTO } from '../api/user.dto';
 import { AppError } from 'common/errors/errors';
 
 @Injectable()
@@ -19,5 +19,13 @@ export class UserService {
         await this.userRepository.save(createdUser);
         return createdUser;
     }
-
+    async updateUser(userName: string, dto: UpdateUserDTO) {
+        await this.userRepository.update({ userName }, dto)
+        return dto
+    }
+    async deleteUser(userName: string): Promise<boolean> {
+        const user = await this.userRepository.findOne({ where: { userName: userName } })
+        await this.userRepository.remove(user)
+        return true;
+    }
 }
