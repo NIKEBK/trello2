@@ -7,15 +7,15 @@ import { JwtAuthGuard } from 'src/guards/jwt-guard';
 
 @Controller('auth')
 export class AuthController {
-    constructor(private readonly AuthService: AuthService) { }
+    constructor(private readonly authService: AuthService) { }
 
     @Post('register')
     register(@Body() body: CreateUserDTO): Promise<CreateUserDTO> {
-        return this.AuthService.registerUser(body)
+        return this.authService.registerUser(body)
     }
     @Post('login')
     login(@Body() body: UserLoginDTO): Promise<AuthUserResponse> {
-        return this.AuthService.loginUser(body)
+        return this.authService.loginUser(body)
     }
 
     @UseGuards(JwtAuthGuard)

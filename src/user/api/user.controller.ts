@@ -8,10 +8,6 @@ import { JwtAuthGuard } from 'src/guards/jwt-guard';
 
 @Controller('user')
 export class UserController {
-    @Get()
-    public getExample(): string {
-        return 'This route is protected and requires authentication.';
-    }
     constructor(private readonly userRepository: UserRepository,
         private readonly userService: UserService,) {
     }
@@ -23,10 +19,9 @@ export class UserController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Delete(':userName')
-    async deleteUser(@Param('userName') userName: string): Promise<string> {
-        //const user = request.user
-        await this.userService.deleteUser(userName)
-        return `User ${userName} was deleted`
+    @Delete(':id')
+    async deleteUser(@Param('id') id: number): Promise<string> {
+        await this.userService.deleteUser(id)
+        return `User ${id} was deleted`
     }
 }
