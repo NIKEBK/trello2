@@ -29,6 +29,7 @@ export class AuthService {
         if (!validatePassword) throw new BadRequestException(AppError.WRONG_DATA)
         const userData = {
             userName: existUser.userName,
+            id: existUser.id,
         }
         const token = await this.tokenService.generateJwtToken(userData)
         const user = await this.userRepository.publicUser(dto.userName)

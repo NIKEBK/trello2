@@ -15,6 +15,8 @@ export class UserController {
     @Patch()
     updateUser(@Body() body: UpdateUserDTO, @Req() request) {
         const user = request.user
+        console.log(user);
+
         return this.userService.updateUser(user.userName, body)
     }
 
