@@ -17,3 +17,11 @@ export class GetColumnDTO {
     @IsString()
     columnName: string;
 }
+
+export class GetOneColumnDTO {
+    @IsString()
+    columnName: string;
+
+    @IsNumber()
+    userId: number;
+}
