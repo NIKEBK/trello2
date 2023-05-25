@@ -26,4 +26,5 @@ export class UserController {
         await this.userService.deleteUser(id)
         return `User ${id} was deleted`
     }
+
 }

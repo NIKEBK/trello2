@@ -12,3 +12,8 @@ export class UpdateColumnDTO {
     @IsString()
     columnName: string;
 }
+
+export class GetColumnDTO {
+    @IsString()
+    columnName: string;
+}

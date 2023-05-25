@@ -3,7 +3,7 @@ import { ColumnRepository } from '../../repository/repositories/column.repositor
 import { ColumnContent } from 'src/entities/column.entity';
 import { ColumnService } from '../service/column.service';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
-import { CreateColumnDTO } from './dto';
+import { CreateColumnDTO, GetColumnDTO } from './dto';
 import { CurrentUser } from 'common/errors/current-user-decorator';
 import { User } from 'src/entities/user.entity';
 
@@ -18,6 +18,12 @@ export class ColumnController {
         const userId = currentUser.id;
         return this.columnService.createColumn(body, userId);
 
+    }
+    @UseGuards(JwtAuthGuard)
+    @Get('myColumns')
+    getAllColumns(dto: GetColumnDTO, @CurrentUser() currentUser: User) {
+        const userId = currentUser.id;
+        return this.columnRepository.getAllColumns(dto, userId)
     }
 
 }
