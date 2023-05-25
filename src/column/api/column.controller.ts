@@ -36,7 +36,7 @@ export class ColumnController {
 
     @UseGuards(JwtAuthGuard)
     @Patch('patch/:id')
-    async updateCoumnName(@Param('id') id: number, @CurrentUser() currentUser: User, @Body() updateName: string,): Promise<any> {
+    async updateColumnName(@Param('id') id: number, @CurrentUser() currentUser: User, @Body() updateName: string,): Promise<any> {
         const column = await this.columnRepository.findOneColumn(id)
         const user = currentUser.id
         if (!column) {
