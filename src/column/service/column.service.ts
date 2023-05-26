@@ -9,7 +9,6 @@ import { UserRepository } from 'src/repository/repositories/user.repository';
 @Injectable()
 export class ColumnService {
     constructor(private readonly columnRepository: ColumnRepository,
-        //private readonly userRepository: UserRepository
     ) {
     }
     async createColumn(dto: CreateColumnDTO, userId: number): Promise<ColumnContent> {

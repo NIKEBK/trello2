@@ -10,8 +10,8 @@ export class CardService {
     ) {
     }
     async createCard(dto: CreateCardDTO, userId: number): Promise<Card> {
-        const createdColumn = await this.cardRepository.save({ cardName: dto.cardName, columnId: dto.columnId, userId: userId });
-        return createdColumn
+        const createdCard = await this.cardRepository.save({ cardName: dto.cardName, columnId: dto.columnId, userId: userId });
+        return createdCard
     }
 
 }
