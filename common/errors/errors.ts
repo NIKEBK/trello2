@@ -4,5 +4,7 @@ export const AppError = {
     WRONG_DATA: "Wrong username or password",
     COLUMN_EXIST: "Column with this name already exist",
     NOT_COLUMN_OWNER: "You are not owner of this column",
-    COLUMN_NOT_EXIST: "Column with this id not exist"
+    COLUMN_NOT_EXIST: "Column with this id not exist",
+    CARD_NOT_EXIST: "Card with this name not exist",
+
 }

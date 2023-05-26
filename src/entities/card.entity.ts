@@ -7,7 +7,7 @@ import { User } from "./user.entity"
 @Entity()
 export class Card {
     @PrimaryGeneratedColumn()
-    id: string
+    id: number
 
     @Column()
     cardName: string
