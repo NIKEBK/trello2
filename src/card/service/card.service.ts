@@ -22,18 +22,18 @@ export class CardService {
     }
 
     async updateCard(dto: UpdateCardNameDTO,): Promise<UpdateCardNameDTO> {
-        const columnId = await this.cardRepository.findOneCard(dto.columnId);
+        const id = await this.cardRepository.findOneCard(dto.id);
         const card = await this.cardRepository.findOne({
-            where: { id: columnId.id },
+            where: { id: id.id },
         });
         if (!card) {
             throw new BadRequestException(AppError.CARD_NOT_EXIST);
         }
-        await this.cardRepository.update(columnId.id, {
+        await this.cardRepository.update(id.id, {
             cardName: dto.cardName,
         });
         return await this.cardRepository.findOne({
-            where: { id: columnId.id },
+            where: { id: id.id },
         });
     }
 }

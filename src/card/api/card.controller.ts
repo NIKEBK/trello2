@@ -32,12 +32,12 @@ export class CardController {
         return `Your card with ${id} id was deleted`
     }
 
-    @Put('edit/:columnId')
-    async updateCardName(@Param('columnId') columnId: number,
+    @Put('edit/:id')
+    async updateCardName(@Param('id') id: number,
         @Body() body: UpdateCardNameDTO,) {
         return await this.cardService.updateCard({
             cardName: body.cardName,
-            columnId: columnId,
+            id: id,
         })
     }
 }

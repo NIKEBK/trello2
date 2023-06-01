@@ -21,5 +21,5 @@ export class UpdateCardNameDTO {
     cardName: string;
 
     @IsNumber()
-    columnId: number;
+    id: number;
 }
