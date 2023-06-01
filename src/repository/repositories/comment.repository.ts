@@ -15,4 +15,8 @@ export class CommentRepository extends Repository<Comment> {
             commentRepository.queryRunner,
         );
     }
+    async findOneComment(id: number): Promise<Comment> {
+        const oneComment = await this.commentRepository.findOne({ where: { id: id } });
+        return oneComment
+    }
 }

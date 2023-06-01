@@ -1,13 +1,17 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString, isString } from 'class-validator';
 
 export class CreateCommentDTO {
     @IsString()
     commentText: string;
 
-    // @IsNumber()
-    // userId: number;
-
     @IsNumber()
     cardId: number;
+}
 
+export class UpdateCommentDTO {
+    @IsString()
+    commentText: string;
+
+    @IsNumber()
+    id: number;
 }
