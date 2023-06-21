@@ -1,22 +1,28 @@
-import { Body, Controller, Get, Param, Post, Delete, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Delete, UseGuards, Patch, Req } from '@nestjs/common';
 import { UserRepository } from '../../repository/repositories/user.repository';
 import { User } from 'src/entities/user.entity';
 import { UserService } from '../service/user.service';
 import { AuthGuard } from '@nestjs/passport';
-import { CreateUserDTO } from './user.dto';
+import { CreateUserDTO, UpdateUserDTO } from './user.dto';
+import { JwtAuthGuard } from 'src/guards/jwt-guard';
 
 @Controller('user')
 export class UserController {
-    @Get()
-    public getExample(): string {
-        return 'This route is protected and requires authentication.';
-    }
     constructor(private readonly userRepository: UserRepository,
         private readonly userService: UserService,) {
     }
-    @Post('create-user')
-    createUsers(@Body() dto: CreateUserDTO) {
-        console.log(dto);
-        return this.userService.createUser(dto)
+    @UseGuards(JwtAuthGuard)
+    @Patch()
+    updateUser(@Body() body: UpdateUserDTO, @Req() request) {
+        const user = request.user
+        return this.userService.updateUser(user.userName, body)
     }
+
+    @UseGuards(JwtAuthGuard)
+    @Delete(':id')
+    async deleteUser(@Param('id') id: number): Promise<string> {
+        await this.userService.deleteUser(id)
+        return `User ${id} was deleted`
+    }
+
 }

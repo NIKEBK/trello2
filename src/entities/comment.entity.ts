@@ -5,7 +5,7 @@ import { Card } from "./card.entity"
 @Entity()
 export class Comment {
     @PrimaryGeneratedColumn()
-    id: string
+    id: number
 
     @Column()
     commentText: string

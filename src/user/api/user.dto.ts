@@ -8,3 +8,7 @@ export class CreateUserDTO {
     @IsString()
     password: string;
 }
+export class UpdateUserDTO {
+    @IsString()
+    userName: string;
+}
