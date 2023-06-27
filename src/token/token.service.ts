@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config'
-import { User } from 'src/entities/user.entity';
+
 
 @Injectable()
 export class TokenService {
@@ -13,8 +13,8 @@ export class TokenService {
     async generateJwtToken(user) {
         const payload = { user };
         return this.jwtService.sign(payload, {
-            secret: await this.configService.get('secret_jwt'),
-            expiresIn: await this.configService.get('expire_jwt')
+            secret: this.configService.get('secret_jwt'),
+            expiresIn: this.configService.get('expire_jwt')
         })
     }
 

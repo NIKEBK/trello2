@@ -3,7 +3,7 @@ import { CardRepository } from '../../repository/repositories/card.repository';
 import { Card } from 'src/entities/card.entity';
 import { CardService } from '../service/card.service';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
-import { CurrentUser } from 'common/errors/current-user-decorator';
+import { CurrentUser } from 'common/current-user-decorator';
 import { CreateCardDTO, GetAllUserCardsDTO, UpdateCardNameDTO } from './dto';
 import { User } from 'src/entities/user.entity';
 
@@ -15,13 +15,13 @@ export class CardController {
 
 
     @Post('create')
-    createCard(@Body() body: CreateCardDTO, @CurrentUser() currentUser: User) {
+    async createCard(@Body() body: CreateCardDTO, @CurrentUser() currentUser: User): Promise<Card> {
         const userId = currentUser.id;
         return this.cardService.createCard(body, userId);
     }
 
-    @Get('MyCards')
-    getAllUserCard(dto: GetAllUserCardsDTO, @CurrentUser() currentUser: User) {
+    @Get('cards')
+    async getAllUserCard(dto: GetAllUserCardsDTO, @CurrentUser() currentUser: User): Promise<Card[]> {
         const userId = currentUser.id;
         return this.cardRepository.getAllUserCards(dto, userId)
     }
@@ -32,10 +32,9 @@ export class CardController {
         return `Your card with ${id} id was deleted`
     }
 
-    @Put('edit/:id')
-    async updateCardName(@Param('id') id: number,
-        @Body() body: UpdateCardNameDTO,) {
-        return await this.cardService.updateCard({
+    @Put('update/:id')
+    async updateCardName(@Param('id') id: number, @Body() body: UpdateCardNameDTO): Promise<UpdateCardNameDTO> {
+        return this.cardService.updateCard({
             cardName: body.cardName,
             id: id,
         })

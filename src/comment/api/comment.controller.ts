@@ -3,7 +3,7 @@ import { CommentRepository } from '../../repository/repositories/comment.reposit
 import { Comment } from 'src/entities/comment.entity';
 import { CommentService } from '../service/comment.service';
 import { JwtAuthGuard } from 'src/guards/jwt-guard';
-import { CurrentUser } from 'common/errors/current-user-decorator';
+import { CurrentUser } from 'common/current-user-decorator';
 import { User } from 'src/entities/user.entity';
 import { CreateCommentDTO, UpdateCommentDTO } from './dto';
 

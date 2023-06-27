@@ -1,14 +1,13 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../../repository/repositories/user.repository';
 import { User } from 'src/entities/user.entity';
-import { InjectModel } from '@nestjs/sequelize';
 import * as bcrypt from 'bcrypt'
 import { CreateUserDTO, UpdateUserDTO } from '../api/user.dto';
-import { AppError } from 'common/errors/errors';
+
 
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(User) private readonly userRepository: UserRepository) {
+    constructor(private readonly userRepository: UserRepository) {
     }
     async hashPassword(password: string) {
         return bcrypt.hash(password, 10)

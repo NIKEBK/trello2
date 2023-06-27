@@ -11,7 +11,7 @@ export class CardService {
     ) {
     }
     async createCard(dto: CreateCardDTO, userId: number): Promise<Card> {
-        const createdCard = await this.cardRepository.save({ cardName: dto.cardName, columnId: dto.columnId, userId: userId });
+        const createdCard = await this.cardRepository.save({ cardName: dto.name, columnId: dto.id, userId: userId });
         return createdCard
     }
 
@@ -22,18 +22,15 @@ export class CardService {
     }
 
     async updateCard(dto: UpdateCardNameDTO,): Promise<UpdateCardNameDTO> {
-        const id = await this.cardRepository.findOneCard(dto.id);
-        const card = await this.cardRepository.findOne({
-            where: { id: id.id },
-        });
+        const card = await this.cardRepository.findOneCard(dto.id);
         if (!card) {
             throw new BadRequestException(AppError.CARD_NOT_EXIST);
         }
-        await this.cardRepository.update(id.id, {
-            cardName: dto.cardName,
+        await this.cardRepository.update(card.id, {
+            cardName: dto.cardName
         });
-        return await this.cardRepository.findOne({
-            where: { id: id.id },
+        return this.cardRepository.findOne({
+            where: { id: card.id },
         });
     }
 }

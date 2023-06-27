@@ -11,3 +11,23 @@ export class UserLoginDTO {
     password: string
 
 }
+
+export class RegisterUserDTO {
+    @IsString()
+    userName: string;
+
+    @IsString()
+    password: string;
+}
+
+export class AuthUserResponse {
+    @IsString()
+    userName: string
+
+    @IsString()
+    password: string
+
+    @IsString()
+    token: string
+
+}

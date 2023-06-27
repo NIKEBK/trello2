@@ -1,27 +1,27 @@
 import { IsNumber, IsString } from 'class-validator';
 
 export class CreateColumnDTO {
-    @IsString()
-    columnName: string;
-
     @IsNumber()
     userId: number;
+
+    @IsString()
+    name: string;
 }
 
-export class UpdateColumnDTO {
-    @IsString()
-    columnName: string;
-}
+// export class UpdateColumnDTO {
+//     @IsString()
+//     name: string;
+// }
 
 export class GetColumnDTO {
     @IsString()
-    columnName: string;
+    name: string;
 }
 
 export class GetOneColumnDTO {
-    @IsString()
-    columnName: string;
-
     @IsNumber()
     userId: number;
+
+    @IsString()
+    name: string;
 }
